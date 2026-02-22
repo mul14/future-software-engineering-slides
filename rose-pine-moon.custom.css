@@ -1,0 +1,164 @@
+/* @theme rose-pine-moon */
+
+@import 'default';
+
+:root {
+  --rp-base:           #232136;
+  --rp-surface:        #2a273f;
+  --rp-overlay:        #393552;
+  --rp-muted:          #6e6a86;
+  --rp-subtle:         #908caa;
+  --rp-text:           #e0def4;
+  --rp-love:           #eb6f92;
+  --rp-gold:           #f6c177;
+  --rp-rose:           #ea9a97;
+  --rp-pine:           #3e8fb0;
+  --rp-foam:           #9ccfd8;
+  --rp-iris:           #c4a7e7;
+  --rp-hl-low:         #2a283e;
+  --rp-hl-med:         #44415a;
+  --rp-hl-high:        #56526e;
+}
+
+section {
+  background-color: var(--rp-base);
+  color: var(--rp-text);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 28px;
+}
+
+/* Headings */
+h1 {
+  color: var(--rp-iris);
+  font-size: 1.8em;
+  border-bottom: 2px solid var(--rp-hl-high);
+  padding-bottom: 0.2em;
+}
+
+h2 {
+  color: var(--rp-foam);
+  font-size: 1.4em;
+  border-bottom: 1px solid var(--rp-hl-med);
+  padding-bottom: 0.15em;
+}
+
+h3 {
+  color: var(--rp-rose);
+  font-size: 1.1em;
+}
+
+/* Lead / title slides */
+section.lead {
+  background-color: var(--rp-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section.lead h1 {
+  color: var(--rp-iris);
+  border: none;
+  font-size: 2.2em;
+}
+
+section.lead h3 {
+  color: var(--rp-subtle);
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* Lists */
+ul, ol {
+  color: var(--rp-text);
+}
+
+li::marker {
+  color: var(--rp-pine);
+}
+
+/* Strong / bold */
+strong {
+  color: var(--rp-gold);
+}
+
+/* Italic / em */
+em {
+  color: var(--rp-rose);
+  font-style: italic;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 4px solid var(--rp-pine);
+  background-color: var(--rp-hl-low);
+  padding: 0.5em 1em;
+  border-radius: 0 6px 6px 0;
+  color: var(--rp-subtle);
+  font-style: italic;
+}
+
+/* Inline code */
+code {
+  background-color: var(--rp-overlay);
+  color: var(--rp-foam);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.85em;
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--rp-surface);
+  border: 1px solid var(--rp-hl-high);
+  border-radius: 8px;
+  padding: 0.8em 1em;
+}
+
+pre code {
+  background-color: transparent;
+  color: var(--rp-foam);
+  padding: 0;
+  font-size: 0.78em;
+}
+
+/* Paginator */
+section::after {
+  color: var(--rp-muted);
+  font-size: 0.6em;
+}
+
+/* Header / footer */
+header, footer {
+  color: var(--rp-muted);
+  font-size: 0.55em;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: var(--rp-overlay);
+  color: var(--rp-iris);
+  border-bottom: 2px solid var(--rp-hl-high);
+  padding: 0.4em 0.8em;
+}
+
+td {
+  border-bottom: 1px solid var(--rp-hl-med);
+  padding: 0.35em 0.8em;
+}
+
+tr:nth-child(even) td {
+  background-color: var(--rp-hl-low);
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid var(--rp-hl-high);
+}

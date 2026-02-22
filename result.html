@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Acquisition Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --bg-card: #161920;
+            --bg-input: #0f1115;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+            --border-color: #2e3440;
+            --hover-bg: #2a2f3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            background-color: rgba(234, 179, 8, 0.2);
+            color: var(--accent-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-dropdown {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .filter-dropdown span {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            background-color: #d1d5db;
+            border-radius: 50%;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 2rem;
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .sidebar-item.active {
+            background-color: rgba(234, 179, 8, 0.1);
+            color: var(--accent-yellow);
+            border-left: 3px solid var(--accent-yellow);
+        }
+
+        .sidebar-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        .form-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .card-header i {
+            color: var(--accent-yellow);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-yellow);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .select-wrapper select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .save-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+            color: #000;
+            border: none;
+            padding: 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: opacity 0.2s;
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .end-session-btn {
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .upload-card {
+            background-color: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .upload-icon-circle {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(234, 179, 8, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+        }
+
+        .upload-card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .upload-card p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .browse-btn {
+            background-color: var(--accent-yellow);
+            color: #000;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Session Status Table */
+        .status-section {
+            margin-top: 1rem;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .badge-history {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+        }
+
+        .view-all {
+            margin-left: auto;
+            color: var(--accent-yellow);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sessions-table {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sessions-table th {
+            text-align: left;
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sessions-table td {
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .sessions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .sessions-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status-active {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .status-saved {
+            background-color: rgba(107, 114, 128, 0.3);
+            color: #d1d5db;
+        }
+
+        .status-failed {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .active-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-yellow);
+            margin-right: 0.5rem;
+        }
+
+        .action-btn {
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Overview</a>
+                <a href="#" class="active">Live</a>
+                <a href="#">Short</a>
+                <a href="#">Affiliate</a>
+                <a href="#">Product</a>
+            </nav>
+        </div>
+
+        <div class="nav-center">
+            <div class="filter-dropdown">
+                Platform: <span>Tiktok</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="filter-dropdown">
+                Division: <span>All</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="filter-dropdown">
+                Brand: <span>Nike</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <i class="fa-solid fa-gear"></i>
+            <div class="profile-pic"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <a href="#" class="sidebar-item active">
+                <i class="fa-regular fa-circle-play"></i>
+                <span>Live</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa-regular fa-calendar-check"></i>
+                <span>Session</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa-regular fa-user"></i>
+                <span>Host</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa-solid fa-video"></i>
+                <span>Video</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Product</span>
+            </a>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Data Acquisition</h1>
+                <p>Upload and synchronize your data sources</p>
+            </div>
+
+            <div class="content-grid">
+                <!-- Data Entry Card -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <span>New Live Session Data</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group field-wrapper select-wrapper">
+                            <label>Select Brand</label>
+                            <div class="select-wrapper">
+                                <select class="form-control">
+                                    <option>Nike</option>
+                                    <option>Adidas</option>
+                                    <option>Puma</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group field-wrapper select-wrapper">
+                            <label>Select Host</label>
+                            <div class="select-wrapper">
+                                <select class="form-control">
+                                    <option>Sarah J.</option>
+                                    <option>Mike T.</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="form-group">
+                            <label>Avg Price</label>
+                            <input type="text" class="form-control" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Items Sold</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Direct GMV</label>
+                            <input type="text" class="form-control" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Tap-through Rate</label>
+                            <input type="text" class="form-control" placeholder="%">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Orders Paid</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Viewers</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Views</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>New Followers</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Shares</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Customers</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Show GPM</label>
+                            <input type="text" class="form-control" placeholder="0.00">
+                        </div>
+
+                        <div class="form-group">
+                            <label>CTR</label>
+                            <input type="text" class="form-control" placeholder="%">
+                        </div>
+                        <div class="form-group">
+                            <label>Likes</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>CTOR</label>
+                            <input type="text" class="form-control" placeholder="%">
+                        </div>
+                        <div class="form-group">
+                            <label>Products</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Avg Viewing Duration</label>
+                            <input type="text" class="form-control" placeholder="MM:SS">
+                        </div>
+                        <div class="form-group">
+                            <label>Product Impressions</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Product Clicks</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+
+                    <button class="save-btn">
+                        <i class="fa-regular fa-floppy-disk"></i>
+                        Save
+                    </button>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="right-panel">
+                    <button class="end-session-btn">
+                        <i class="fa-regular fa-circle-stop"></i>
+                        END LIVE SESSION
+                    </button>
+
+                    <div class="upload-card">
+                        <div class="upload-icon-circle">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <h3>Upload Data File</h3>
+                        <p>Drag & drop CSV or Excel files here</p>
+                        <button class="browse-btn">
+                            <i class="fa-regular fa-folder-open"></i>
+                            Browse File
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session Status Table -->
+            <div class="status-section">
+                <div class="status-header">
+                    <h2>Session Status</h2>
+                    <span class="badge-history">History</span>
+                    <a href="#" class="view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <table class="sessions-table">
+                    <thead>
+                        <tr>
+                            <th>Time Stamp</th>
+                            <th>Session Details</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="active-dot"></span>
+                                Oct 24, 2023 - 19:42:05
+                            </td>
+                            <td>Brand: Nike | Host: Sarah J.</td>
+                            <td><span class="status-badge status-active">ACTIVE</span></td>
+                            <td><button class="action-btn"><i class="fa-solid fa-ellipsis"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Oct 24, 2023 - 14:20:10</td>
+                            <td>Brand: Adidas | Host: Mike T.</td>
+                            <td><span class="status-badge status-saved">Saved</span></td>
+                            <td><button class="action-btn"><i class="fa-solid fa-ellipsis"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Oct 23, 2023 - 09:15:45</td>
+                            <td>Brand: Puma | Host: Emma W.</td>
+                            <td><span class="status-badge status-failed">Failed</span></td>
+                            <td><button class="action-btn"><i class="fa-solid fa-repeat"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

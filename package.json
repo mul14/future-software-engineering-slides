@@ -1,0 +1,24 @@
+{
+  "name": "ai-workflow-slides",
+  "scripts": {
+    "build": "marp slides.md --theme-set themes/ --allow-local-files -o slides.html",
+    "pdf": "marp slides.md --theme-set themes/ --allow-local-files -o slides.pdf",
+    "watch": "marp slides.md --theme-set themes/ --allow-local-files --watch -o slides.html",
+
+    "build:rose-pine": "marp slides.md --theme themes/rose-pine.css --allow-local-files -o dist/rose-pine.html",
+    "build:rose-pine-moon": "marp slides.md --theme themes/rose-pine-moon.css --allow-local-files -o dist/rose-pine-moon.html",
+    "build:rose-pine-dawn": "marp slides.md --theme themes/rose-pine-dawn.css --allow-local-files -o dist/rose-pine-dawn.html",
+    "build:academic": "marp slides.md --theme themes/academic.css --allow-local-files -o dist/academic.html",
+    "build:beam": "marp slides.md --theme themes/beam.css --allow-local-files -o dist/beam.html",
+    "build:border": "marp slides.md --theme themes/border.css --allow-local-files -o dist/border.html",
+    "build:gradient": "marp slides.md --theme themes/gradient.css --allow-local-files -o dist/gradient.html",
+    "build:graph-paper": "marp slides.md --theme themes/graph_paper.css --allow-local-files -o dist/graph-paper.html",
+    "build:gaia": "marp slides.md --allow-local-files -o dist/gaia.html",
+    "build:uncover": "marp slides.md --theme uncover --allow-local-files -o dist/uncover.html",
+
+    "build:all": "npm run build:rose-pine && npm run build:rose-pine-moon && npm run build:rose-pine-dawn && npm run build:academic && npm run build:beam && npm run build:border && npm run build:gradient && npm run build:graph-paper && npm run build:gaia && npm run build:uncover"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.2.3"
+  }
+}
