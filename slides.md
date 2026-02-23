@@ -14,54 +14,27 @@ html: true
 
 ---
 
-## Apa Itu AI? (Simplified)
-
-- **Artificial Intelligence** - Mesin yang bisa "berpikir" dan mengambil keputusan
-- **Machine Learning** - AI yang belajar dari data
-- **Deep Learning** - ML dengan neural networks berlapis
-- **Large Language Models** - Model bahasa yang dilatih dengan data masif
-- **Generative AI** - AI yang bisa menghasilkan konten baru
-
----
-
-## Sejarah AI dalam Software Engineering
+## Sejarah AI (1/2)
 
 - **1950s** - Alan Turing: "Can machines think?"
 - **1960s-80s** - Expert systems & rule-based programming
 - **2010s** - Machine learning & deep learning revolution
-- **2021** - OpenAI Codex & GitHub Copilot: AI coding assistant pertama
-- **2022** - ChatGPT dirilis, AI menjadi mainstream
+- **2017** - Arsitektur **Transformer** — fondasi semua LLM
+- **2018** - OpenAI merilis **GPT-1** (117M parameter)
+- **2020** - **GPT-3** (175B parameter) — bisa menulis kode & esai
+- **2021** - GitHub **Copilot**: AI coding assistant pertama
 
 ---
 
-## Era ChatGPT & LLM (2022–2023)
+## Sejarah AI (2/2)
 
-- **Nov 2022** - ChatGPT dirilis, 1 juta user dalam 5 hari
+- **2022** - **ChatGPT** dirilis, 1 juta user dalam 5 hari
 - **2023** - GPT-4, Claude, Gemini: model multimodal & reasoning
-- **2023** - AI bisa menulis, menjelaskan, dan mendebug kode
-- **2023** - Cursor IDE diluncurkan: AI-first code editor
-- Paradigma berubah: developer mulai *pair-programming* dengan AI
-
----
-
-## Era Agentic AI (2024–2025)
-
+- **2023** - Cursor IDE: AI-first code editor
 - **2024** - Devin, OpenHands: AI yang bisa koding mandiri
 - **2024** - AI agent bisa akses terminal, browser, file system
-- **2025** - Multi-agent workflows: beberapa AI bekerja paralel
-- **2025** - Claude Code: AI agent dari Anthropic
-- **2025** - Vibe coding: describe → AI builds full app
-- **Kini** - AI bisa membuat **video** hanya dari teks singkat
-
----
-
-## State Saat Ini: Seedance 2.0
-
-- **Seedance 2.0** (ByteDance) — video generation dari prompt singkat
-- Cukup ketik: *"Anak SD makan soto"*
-- AI menghasilkan video HD berkualitas sinematik dalam hitungan detik
-- Bukan hanya teks & kode — AI kini menguasai **semua media**
-- Implikasi: barrier kreasi konten digital hampir nol
+- **2025** - Claude Code, multi-agent workflows, vibe coding
+- **2026** - **Seedance 2.0**: AI generate video dari teks singkat
 
 ---
 
@@ -69,6 +42,34 @@ html: true
 <!-- _paginate: false -->
 
 <video src="anak_sd_makan_soto.mp4" controls width="100%" style="max-height: 80vh; border-radius: 8px;"></video>
+
+---
+
+## Apa Itu AI?
+
+- **Artificial Intelligence** - Mesin yang bisa "berpikir" dan mengambil keputusan
+- **Large Language Models (LLM)** - Model bahasa yang dilatih dengan data masif
+- **Generative AI** - AI yang bisa menghasilkan konten baru (teks, kode, gambar, video)
+
+---
+
+## Penjelasan LLM
+
+- **Large Language Model** = model AI yang dilatih dengan miliaran teks
+- Prediksi *next token* berdasarkan konteks sebelumnya
+- Tidak benar-benar "mengerti", tapi sangat baik dalam pattern matching
+- Memiliki **context window** (jumlah token yang bisa diproses sekaligus)
+- Semakin baik konteks yang diberikan, semakin baik hasilnya
+
+---
+
+## Prediksi Elon Musk
+- Proses saat ini — tulis kode, compiler terjemahkan ke binary — **tidak efisien**
+- Visi Musk: manusia cukup **describe what they want** → AI langsung generate binary
+- Tidak perlu lagi bahasa pemrograman sebagai perantara
+- AI akan langsung menghasilkan **optimized machine code**
+- Prediksi: terjadi di **akhir 2026**
+- Jika benar, peran developer bergeser total ke **problem definition**
 
 ---
 
@@ -118,21 +119,32 @@ html: true
 
 ---
 
-## Vibe Coding
-- Tren baru di dunia development: **"describe & deploy"**
-- Cukup bilang ke AI apa yang kamu mau → langsung jadi
-- Tidak perlu baca kode, cukup **accept & run**
-- Populer untuk prototyping & hackathon
+<!-- _class: lead -->
+
+# Vibe Coding
 
 ---
 
-## Penjelasan LLM
+## Apa Itu Vibe Coding?
 
-- **Large Language Model** = model AI yang dilatih dengan miliaran teks
-- Prediksi *next token* berdasarkan konteks sebelumnya
-- Tidak benar-benar "mengerti", tapi sangat baik dalam pattern matching
-- Memiliki **context window** (jumlah token yang bisa diproses sekaligus)
-- Semakin baik konteks yang diberikan, semakin baik hasilnya
+- Bilang ke AI apa yang kamu mau → AI akan membuatnya
+- Tidak perlu baca kode, cukup klik **accept & run**
+- Seperti **pesan makanan via app** — tinggal pilih, tidak perlu memasak
+
+---
+
+![bg contain](vibe-coding.png)
+
+---
+
+## Masalah dengan Vibe Coding
+
+- ❌ **Kode berantakan** — makin besar project, makin kacau
+- ❌ **Amnesia** — AI tidak ingat keputusan sebelumnya
+- ❌ **Tidak bisa diperbaiki** — kode yang tak dibaca = kode yang tak dipahami
+- ❌ **Rawan bolong** — AI bisa bikin celah keamanan tanpa sadar
+- ❌ **Tanpa panduan** — tidak ada spec, tidak ada tes
+- 💡 Kita butuh pendekatan yang lebih **terstruktur**...
 
 ---
 
@@ -271,39 +283,6 @@ fitur autentikasi, kemudian implementasikan.
 
 <!-- _class: lead -->
 
-# Vibe Coding
-
----
-
-## Apa Itu Vibe Coding?
-
-- Tren baru: **"Describe it, ship it"** — tanpa nulis kode sama sekali
-- Bilang ke AI apa yang kamu mau → AI yang bangun semuanya
-- Kamu tidak perlu baca kode, cukup klik **accept & run**
-- Seperti **pesan makanan via app** — tinggal pilih, gak perlu masak
-- Populer untuk prototyping & hackathon
-
----
-
-
-<img src="vibe-coding.png" style="width: 100%; height: 100%; object-fit: contain;" />
-
----
-
-## Masalah dengan Vibe Coding
-
-- ❌ **Kode berantakan** — makin besar project, makin kacau
-- ❌ **AI pelupa** — AI tidak ingat keputusan sebelumnya
-- ❌ **Tidak bisa diperbaiki** — kode yang tak dibaca = kode yang tak dipahami
-- ❌ **Hasil beda-beda** — prompt sama, output bisa beda tiap kali
-- ❌ **Rawan bolong** — AI bisa bikin celah keamanan tanpa sadar
-- ❌ **Tanpa panduan** — tidak ada spec, tidak ada tes
-- 💡 Kita butuh pendekatan yang lebih **terstruktur**...
-
----
-
-<!-- _class: lead -->
-
 # Spec Driven Development
 
 ---
@@ -356,7 +335,7 @@ fitur autentikasi, kemudian implementasikan.
 
 ## Praktek: Agentic AI + Spec Driven Development
 
-- Membuat aplikasi **end-to-end** menggunakan AI agent
+- Membuat fitur menggunakan AI agent
 - Developer berperan sebagai **architect & director**
 - AI agent mengeksekusi berdasarkan spec
 - Focus pada **what to build**, bukan **how to code**
@@ -365,21 +344,10 @@ fitur autentikasi, kemudian implementasikan.
 
 ## Tools yang Digunakan
 
-- **OpenCode** / **AntiGravity** - AI coding agent (free model tersedia)
-- **Markdown** - Untuk menulis spec
+- **OpenCode** - AI coding agent (free model tersedia)
 - **Git** - Version control tetap penting
-- **Terminal** - Untuk running & testing
+- **Terminal** - Untuk running OpenCode & testing
 - Spec files sebagai **panduan utama** AI
-
----
-
-## Live Demo Flow
-
-1. Siapkan **Story YAML** (Backstage format, Bahasa Indonesia)
-2. Jalankan **Story Clarifier** → AI tanya hal-hal yang kurang jelas
-3. Jawab pertanyaan → AI generate **OpenSpec** (spec teknis lengkap)
-4. Jalankan **Story Apply** → AI implementasi dari spec
-5. Review, test, dan iterate
 
 ---
 
