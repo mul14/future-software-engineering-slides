@@ -273,10 +273,9 @@ fitur autentikasi, kemudian implementasikan.
 ## Context Engineering
 
 - **Context window** terbatas, harus dikelola dengan baik
-- Gunakan file referensi: `CLAUDE.md`, `AGENTS.md`, `.cursorrules`
+- Gunakan file referensi: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`
 - Sediakan **documentation** dan **specs** yang jelas
 - Berikan hanya konteks yang **relevan**, jangan berlebihan
-- Teknik: **RAG**, file tree, code snippets, error logs
 - Context engineering is better than prompt engineering
 
 ---
@@ -301,7 +300,7 @@ fitur autentikasi, kemudian implementasikan.
 - AI bekerja lebih baik dengan **instruksi terstruktur**
 - Mengurangi ambiguitas dan miskomunikasi
 - Spec bisa di-review sebelum coding dimulai
-- Reproducible: spec yang sama = hasil yang konsisten
+- Reproducible: spec yang sama dapat memberikan hasil yang lebih konsisten
 - Dokumentasi otomatis tersedia sejak awal
 
 ---
