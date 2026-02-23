@@ -152,9 +152,7 @@ html: true
 
 ## Apa Itu Vibe Coding?
 
-- Bilang ke AI apa yang kamu mau → AI akan membuatnya
-- Tidak perlu baca kode, cukup klik **accept & run**
-- Seperti **pesan makanan via app** — tinggal pilih, tidak perlu memasak
+- Cukup berikan instruksi ke AI → AI akan membuatnya
 
 ---
 
@@ -166,7 +164,6 @@ html: true
 
 - ❌ **Kode berantakan** — makin besar project, makin kacau
 - ❌ **Amnesia** — AI tidak ingat keputusan sebelumnya
-- ❌ **Tidak bisa diperbaiki** — kode yang tak dibaca = kode yang tak dipahami
 - ❌ **Rawan bolong** — AI bisa bikin celah keamanan tanpa sadar
 - ❌ **Tanpa panduan** — tidak ada spec, tidak ada tes
 - 💡 Kita butuh pendekatan yang lebih **terstruktur**...
@@ -180,7 +177,7 @@ html: true
 - Kualitas output **berbanding lurus** dengan kualitas prompt
 - Prompt yang baik: jelas, spesifik, dan memiliki konteks
 
-> "Garbage in, garbage out" berlaku sangat kuat untuk AI
+> "Garbage in, garbage out" berlaku untuk prompt dengan AI
 
 ---
 
@@ -290,7 +287,7 @@ fitur autentikasi, kemudian implementasikan.
 - AI yang bisa **mengambil aksi** secara otonom
 - Memiliki akses ke **tools**: file system, terminal, browser, API
 - Loop: *Think* -> *Act* -> *Observe* -> *Repeat*
-- Contoh: OpenCode, AntiGravity, Claude Code, Cursor Agent, Devin
+- Contoh: OpenCode, Claude Code, Codex
 - Bisa melakukan multi-step tasks tanpa intervensi manual
 
 ---
@@ -298,10 +295,10 @@ fitur autentikasi, kemudian implementasikan.
 ## Context Engineering
 
 - **Context window** terbatas, harus dikelola dengan baik
-- Gunakan file referensi: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`
+- Gunakan file referensi: `AGENTS.md`, `CLAUDE.md`
 - Sediakan **documentation** dan **specs** yang jelas
 - Berikan hanya konteks yang **relevan**, jangan berlebihan
-- Context engineering is better than prompt engineering
+- Context engineering lebih baik daripada prompt engineering
 
 ---
 
@@ -369,9 +366,22 @@ fitur autentikasi, kemudian implementasikan.
 ## Tools yang Digunakan
 
 - **OpenCode** - AI coding agent (free model tersedia)
+- **OpenSpec** - Spec generator untuk AI workflow
 - **Git** - Version control tetap penting
 - **Terminal** - Untuk running OpenCode & testing
 - Spec files sebagai **panduan utama** AI
+
+---
+
+## OpenSpec: Step-by-Step
+
+1. `openspec init` — Setup OpenSpec di project
+2. `/opsx-new add-feature` — Buat change baru
+3. `/opsx-ff` — Generate semua artifact (proposal, specs, design, tasks)
+4. Review & edit artifact sebelum coding
+5. `/opsx-apply` — AI implementasi berdasarkan tasks
+6. `/opsx-verify` — Verifikasi hasil terhadap artifact
+7. `/opsx-archive` — Arsipkan & merge specs ke main
 
 ---
 
