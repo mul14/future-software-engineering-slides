@@ -70,6 +70,16 @@ html: true
 
 ---
 
+## Prediksi Elon Musk
+- Proses saat ini — tulis kode, compiler terjemahkan ke binary — **tidak efisien**
+- Visi Musk: manusia cukup **describe what they want** → AI langsung generate binary
+- Tidak perlu lagi bahasa pemrograman sebagai perantara
+- AI akan langsung menghasilkan **optimized machine code**
+- Prediksi: terjadi di **akhir 2026**
+- Jika benar, peran developer bergeser total ke **problem definition**
+
+---
+
 ## Apa Itu AI?
 
 - **Artificial Intelligence** - Mesin yang bisa "berpikir" dan mengambil keputusan
@@ -105,16 +115,6 @@ html: true
 - Code review & refactoring
 - Natural language to code
 - Multi-modal AI (text, image, audio, video)
-
----
-
-## Prediksi Elon Musk
-- Proses saat ini — tulis kode, compiler terjemahkan ke binary — **tidak efisien**
-- Visi Musk: manusia cukup **describe what they want** → AI langsung generate binary
-- Tidak perlu lagi bahasa pemrograman sebagai perantara
-- AI akan langsung menghasilkan **optimized machine code**
-- Prediksi: terjadi di **akhir 2026**
-- Jika benar, peran developer bergeser total ke **problem definition**
 
 ---
 
