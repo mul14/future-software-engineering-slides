@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: rose-pine-moon
+theme: border
 paginate: true
 html: true
 ---
@@ -11,6 +11,31 @@ html: true
 # The Future of Software Engineering
 
 ### From Traditional Development to AI-Powered Engineering
+
+---
+
+<!-- _class: lead -->
+
+# Who am I?
+
+---
+
+## Agenda
+
+- Sejarah AI
+- Apa Itu AI & LLM
+- Vibe Coding
+- Context Engineering
+- Spec Driven Development
+- Praktek: Building App with AI
+
+---
+
+<!-- _paginate: false -->
+
+![bg contain](wa-00.jpg)
+![bg contain](wa-01.jpg)
+![bg contain](wa-02.jpg)
 
 ---
 
@@ -63,16 +88,6 @@ html: true
 
 ---
 
-## Prediksi Elon Musk
-- Proses saat ini — tulis kode, compiler terjemahkan ke binary — **tidak efisien**
-- Visi Musk: manusia cukup **describe what they want** → AI langsung generate binary
-- Tidak perlu lagi bahasa pemrograman sebagai perantara
-- AI akan langsung menghasilkan **optimized machine code**
-- Prediksi: terjadi di **akhir 2026**
-- Jika benar, peran developer bergeser total ke **problem definition**
-
----
-
 ## Traditional Development
 
 - Manual coding dari requirements ke implementasi
@@ -90,6 +105,16 @@ html: true
 - Code review & refactoring
 - Natural language to code
 - Multi-modal AI (text, image, audio, video)
+
+---
+
+## Prediksi Elon Musk
+- Proses saat ini — tulis kode, compiler terjemahkan ke binary — **tidak efisien**
+- Visi Musk: manusia cukup **describe what they want** → AI langsung generate binary
+- Tidak perlu lagi bahasa pemrograman sebagai perantara
+- AI akan langsung menghasilkan **optimized machine code**
+- Prediksi: terjadi di **akhir 2026**
+- Jika benar, peran developer bergeser total ke **problem definition**
 
 ---
 
