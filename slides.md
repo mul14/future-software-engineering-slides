@@ -71,12 +71,6 @@ html: true
 
 ---
 
-## Demo: Mockup → HTML dengan AI
-
-<iframe src="data_acquisition.html" width="100%" height="85%" style="border: none; border-radius: 8px;"></iframe>
-
----
-
 ## Traditional Development
 
 - Manual coding dari requirements ke implementasi
