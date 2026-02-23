@@ -3,7 +3,7 @@
   "scripts": {
     "build": "marp slides.md --theme-set themes/ --allow-local-files -o slides.html",
     "pdf": "marp slides.md --theme-set themes/ --allow-local-files -o slides.pdf",
-    "watch": "marp slides.md --theme-set themes/ --allow-local-files --watch -o slides.html",
+    "watch": "marp . --theme-set themes/ --allow-local-files --server",
 
     "build:rose-pine": "marp slides.md --theme themes/rose-pine.css --allow-local-files -o dist/rose-pine.html",
     "build:rose-pine-moon": "marp slides.md --theme themes/rose-pine-moon.css --allow-local-files -o dist/rose-pine-moon.html",

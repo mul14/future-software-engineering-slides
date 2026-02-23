@@ -1,0 +1,91 @@
+apiVersion: backstage.io/v1alpha1
+kind: Story
+metadata:
+  name: demo-fe-user-management
+  title: 'User Management - CRUD User oleh Admin'
+  description: |
+    Sebagai admin, saya ingin mengelola data user (lihat daftar, tambah, edit, hapus) agar dapat mengatur akses pengguna aplikasi.
+spec:
+  owner: group:default/demo-team
+  system: user-management-demo
+  actors:
+    - name: Admin
+      description: Pengguna dengan role ADMIN, memiliki akses penuh ke user management
+    - name: User
+      description: Pengguna biasa yang tidak boleh mengakses user management
+  nodes:
+    - screen:default/demo-frontend-user-list-page
+    - screen:default/demo-frontend-user-form-page
+  objective: |
+    Menyediakan halaman user management lengkap untuk admin:
+    - Daftar semua user dalam bentuk tabel
+    - Form untuk menambah user baru
+    - Form untuk mengedit user yang sudah ada
+    - Fitur hapus user dengan konfirmasi
+    User biasa yang mencoba mengakses halaman ini akan di-redirect ke dashboard.
+  businessFlow: |
+    1. Admin mengakses halaman /users.
+    2. Sistem menampilkan tabel berisi semua user (nama, email, role).
+    3. Admin dapat menambah user baru via halaman /users/new.
+    4. Admin mengisi form (nama, email, password, role) dan menekan "Simpan".
+    5. Admin dapat mengedit user via halaman /users/[id]/edit.
+    6. Admin mengubah data dan menekan "Simpan".
+    7. Admin dapat menghapus user dengan menekan tombol "Hapus" dan mengkonfirmasi.
+    8. User biasa yang mengakses /users akan di-redirect ke /dashboard.
+  acceptanceCriteria:
+    - scenario: Admin melihat daftar semua user
+      id: ac-001-demo-fe-user-management
+      type: positive
+      actor:
+        - Admin
+      given: User login sebagai "admin@demo.com"
+      when: User mengakses halaman "/users"
+      then:
+        - User melihat tabel berisi semua user
+        - Setiap baris menampilkan nama, email, dan role
+    - scenario: Admin menambah user baru
+      id: ac-002-demo-fe-user-management
+      type: positive
+      actor:
+        - Admin
+      given: User berada di halaman "/users/new"
+      when: User mengisi nama "Budi Santoso", email "budi@demo.com", password "budi123", memilih role "USER", dan menekan tombol "Simpan"
+      then:
+        - User diarahkan ke halaman "/users"
+        - User melihat "Budi Santoso" di daftar user
+    - scenario: Admin mengedit user yang sudah ada
+      id: ac-003-demo-fe-user-management
+      type: positive
+      actor:
+        - Admin
+      given: User berada di halaman edit untuk "user@demo.com"
+      when: User mengubah nama menjadi "User Updated" dan menekan tombol "Simpan"
+      then:
+        - User diarahkan ke halaman "/users"
+        - User melihat "User Updated" di daftar user
+    - scenario: Admin menghapus user
+      id: ac-004-demo-fe-user-management
+      type: positive
+      actor:
+        - Admin
+      given: User berada di halaman "/users"
+      when: User menekan tombol "Hapus" pada "budi@demo.com" dan mengkonfirmasi penghapusan
+      then:
+        - '"budi@demo.com" tidak lagi muncul di daftar user'
+    - scenario: User biasa tidak bisa mengakses user management
+      id: ac-005-demo-fe-user-management
+      type: negative
+      actor:
+        - User
+      given: User login sebagai "user@demo.com"
+      when: User mengakses halaman "/users"
+      then:
+        - User diarahkan ke halaman "/dashboard"
+  constraints:
+    - Semua password harus di-hash menggunakan bcrypt
+    - Gunakan server components untuk data fetching
+    - Gunakan server actions untuk mutasi data (tambah, edit, hapus)
+    - Validasi input menggunakan Zod
+    - Tampilkan loading state dan error state yang proper
+    - Responsive design (mobile-friendly)
+    - Konfirmasi dialog sebelum menghapus user

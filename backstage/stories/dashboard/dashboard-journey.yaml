@@ -1,0 +1,64 @@
+apiVersion: backstage.io/v1alpha1
+kind: Story
+metadata:
+  name: demo-fe-dashboard
+  title: 'Dashboard - Halaman Utama Setelah Login'
+  description: |
+    Sebagai pengguna yang sudah login, saya ingin melihat dashboard dengan informasi profil saya dan navigasi sesuai role.
+spec:
+  owner: group:default/demo-team
+  system: user-management-demo
+  actors:
+    - name: Admin
+      description: Pengguna dengan role ADMIN, memiliki akses penuh
+    - name: User
+      description: Pengguna biasa dengan akses terbatas
+  nodes:
+    - screen:default/demo-frontend-dashboard-page
+  objective: |
+    Menyediakan halaman dashboard yang menampilkan informasi user yang login (nama dan role),
+    serta navigasi yang disesuaikan berdasarkan role user.
+    Admin dapat melihat menu "User Management", sedangkan User biasa tidak.
+  businessFlow: |
+    1. User berhasil login dan diarahkan ke /dashboard.
+    2. Sistem menampilkan nama dan role user yang sedang login.
+    3. Sistem menampilkan menu navigasi sesuai role:
+       - Admin: melihat menu "User Management"
+       - User biasa: tidak melihat menu "User Management"
+    4. Jika user belum login dan mengakses /dashboard, sistem redirect ke /login.
+  acceptanceCriteria:
+    - scenario: Admin melihat dashboard dengan menu User Management
+      id: ac-001-demo-fe-dashboard
+      type: positive
+      actor:
+        - Admin
+      given: User login sebagai "admin@demo.com"
+      when: User mengakses halaman "/dashboard"
+      then:
+        - User melihat nama "Admin"
+        - User melihat role "ADMIN"
+        - User melihat menu "User Management"
+    - scenario: User biasa melihat dashboard tanpa menu User Management
+      id: ac-002-demo-fe-dashboard
+      type: positive
+      actor:
+        - User
+      given: User login sebagai "user@demo.com"
+      when: User mengakses halaman "/dashboard"
+      then:
+        - User melihat nama "User"
+        - User melihat role "USER"
+        - User tidak melihat menu "User Management"
+    - scenario: User belum login diarahkan ke halaman login
+      id: ac-003-demo-fe-dashboard
+      type: negative
+      actor:
+        - User
+      given: User belum login
+      when: User mengakses halaman "/dashboard"
+      then:
+        - User diarahkan ke halaman "/login"
+  constraints:
+    - Gunakan server components untuk data fetching
+    - Tampilkan loading state yang proper
+    - Responsive design (mobile-friendly)

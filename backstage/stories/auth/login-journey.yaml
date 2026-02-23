@@ -1,0 +1,83 @@
+apiVersion: backstage.io/v1alpha1
+kind: Story
+metadata:
+  name: demo-fe-login
+  title: 'Login - Autentikasi User dengan Email dan Password'
+  description: |
+    Sebagai pengguna, saya ingin login ke aplikasi menggunakan email dan password agar dapat mengakses fitur sesuai role saya.
+spec:
+  owner: group:default/demo-team
+  system: user-management-demo
+  actors:
+    - name: Admin
+      description: Pengguna dengan role ADMIN, memiliki akses penuh
+    - name: User
+      description: Pengguna biasa dengan akses terbatas
+  nodes:
+    - screen:default/demo-frontend-login-page
+  objective: |
+    Menyediakan halaman login yang aman dengan validasi kredensial terhadap database.
+    Password di-hash menggunakan bcrypt. Setelah login berhasil, user diarahkan ke dashboard.
+  businessFlow: |
+    1. User membuka halaman /login.
+    2. User mengisi email dan password.
+    3. User menekan tombol "Login".
+    4. Sistem memvalidasi kredensial terhadap database.
+    5. Jika valid, sistem membuat session dan mengarahkan ke /dashboard.
+    6. Jika tidak valid, sistem menampilkan pesan error.
+  techStack:
+    framework: Next.js (App Router)
+    database: SQLite via Prisma ORM
+    auth: NextAuth.js (Credentials Provider)
+    styling: Tailwind CSS
+    language: TypeScript
+  dataModel:
+    - name: User
+      fields:
+        - { name: id, type: Int, description: Primary key auto-increment }
+        - { name: name, type: String, description: Nama lengkap }
+        - { name: email, type: String, description: Unique untuk login }
+        - { name: password, type: String, description: Hashed dengan bcrypt }
+        - { name: role, type: Enum, description: "ADMIN | USER" }
+        - { name: createdAt, type: DateTime, description: Otomatis saat dibuat }
+        - { name: updatedAt, type: DateTime, description: Otomatis saat diupdate }
+  seedData:
+    - { email: admin@demo.com, password: admin123, role: ADMIN, name: Admin }
+    - { email: user@demo.com, password: user123, role: USER, name: User }
+  acceptanceCriteria:
+    - scenario: Login berhasil dengan kredensial yang valid
+      id: ac-001-demo-fe-login
+      type: positive
+      actor:
+        - Admin
+      given: User berada di halaman "/login"
+      when: User mengisi email "admin@demo.com" dan password "admin123" lalu menekan tombol "Login"
+      then:
+        - User diarahkan ke halaman "/dashboard"
+        - User melihat pesan "Selamat datang, Admin"
+    - scenario: Login gagal dengan password salah
+      id: ac-002-demo-fe-login
+      type: negative
+      actor:
+        - Admin
+      given: User berada di halaman "/login"
+      when: User mengisi email "admin@demo.com" dan password "wrongpassword" lalu menekan tombol "Login"
+      then:
+        - User tetap di halaman "/login"
+        - User melihat pesan error "Email atau password salah"
+    - scenario: Login gagal dengan email yang tidak terdaftar
+      id: ac-003-demo-fe-login
+      type: negative
+      actor:
+        - User
+      given: User berada di halaman "/login"
+      when: User mengisi email "nobody@demo.com" dan password "anything" lalu menekan tombol "Login"
+      then:
+        - User tetap di halaman "/login"
+        - User melihat pesan error "Email atau password salah"
+  constraints:
+    - Semua password harus di-hash menggunakan bcrypt
+    - Gunakan NextAuth.js Credentials Provider
+    - Validasi input menggunakan Zod
+    - Tampilkan loading state saat proses login
+    - Responsive design (mobile-friendly)

@@ -29,8 +29,8 @@ html: true
 - **1950s** - Alan Turing: "Can machines think?"
 - **1960s-80s** - Expert systems & rule-based programming
 - **2010s** - Machine learning & deep learning revolution
-- **2020** - GPT-3: kemampuan code generation pertama kali
-- **2021** - GitHub Copilot: AI coding assistant pertama
+- **2021** - OpenAI Codex & GitHub Copilot: AI coding assistant pertama
+- **2022** - ChatGPT dirilis, AI menjadi mainstream
 
 ---
 
@@ -46,9 +46,10 @@ html: true
 
 ## Era Agentic AI (2024–2025)
 
-- **2024** - Claude Code, Devin, OpenHands: AI yang bisa koding mandiri
+- **2024** - Devin, OpenHands: AI yang bisa koding mandiri
 - **2024** - AI agent bisa akses terminal, browser, file system
 - **2025** - Multi-agent workflows: beberapa AI bekerja paralel
+- **2025** - Claude Code: AI agent dari Anthropic
 - **2025** - Vibe coding: describe → AI builds full app
 - **Kini** - AI bisa membuat **video** hanya dari teks singkat
 
@@ -114,6 +115,14 @@ html: true
 <!-- _class: lead -->
 
 # Context Engineering
+
+---
+
+## Vibe Coding
+- Tren baru di dunia development: **"describe & deploy"**
+- Cukup bilang ke AI apa yang kamu mau → langsung jadi
+- Tidak perlu baca kode, cukup **accept & run**
+- Populer untuk prototyping & hackathon
 
 ---
 
@@ -249,14 +258,47 @@ fitur autentikasi, kemudian implementasikan.
 
 ---
 
-## Context Management
+## Context Engineering
 
 - **Context window** terbatas, harus dikelola dengan baik
 - Gunakan file referensi: `CLAUDE.md`, `AGENTS.md`, `.cursorrules`
 - Sediakan **documentation** dan **specs** yang jelas
 - Berikan hanya konteks yang **relevan**, jangan berlebihan
 - Teknik: **RAG**, file tree, code snippets, error logs
-- Context engineering > prompt engineering
+- Context engineering is better than prompt engineering
+
+---
+
+<!-- _class: lead -->
+
+# Vibe Coding
+
+---
+
+## Apa Itu Vibe Coding?
+
+- Tren baru: **"Describe it, ship it"** — tanpa nulis kode sama sekali
+- Bilang ke AI apa yang kamu mau → AI yang bangun semuanya
+- Kamu tidak perlu baca kode, cukup klik **accept & run**
+- Seperti **pesan makanan via app** — tinggal pilih, gak perlu masak
+- Populer untuk prototyping & hackathon
+
+---
+
+
+<img src="vibe-coding.png" style="width: 100%; height: 100%; object-fit: contain;" />
+
+---
+
+## Masalah dengan Vibe Coding
+
+- ❌ **Kode berantakan** — makin besar project, makin kacau
+- ❌ **AI pelupa** — AI tidak ingat keputusan sebelumnya
+- ❌ **Tidak bisa diperbaiki** — kode yang tak dibaca = kode yang tak dipahami
+- ❌ **Hasil beda-beda** — prompt sama, output bisa beda tiap kali
+- ❌ **Rawan bolong** — AI bisa bikin celah keamanan tanpa sadar
+- ❌ **Tanpa panduan** — tidak ada spec, tidak ada tes
+- 💡 Kita butuh pendekatan yang lebih **terstruktur**...
 
 ---
 
@@ -333,12 +375,11 @@ fitur autentikasi, kemudian implementasikan.
 
 ## Live Demo Flow
 
-1. Tulis **project spec** dalam Markdown
-2. Setup project menggunakan AI agent
-3. Generate **data model** dari spec
-4. Generate **API endpoints** dari spec
-5. Generate **UI components** dari spec
-6. Review, test, dan iterate
+1. Siapkan **Story YAML** (Backstage format, Bahasa Indonesia)
+2. Jalankan **Story Clarifier** → AI tanya hal-hal yang kurang jelas
+3. Jawab pertanyaan → AI generate **OpenSpec** (spec teknis lengkap)
+4. Jalankan **Story Apply** → AI implementasi dari spec
+5. Review, test, dan iterate
 
 ---
 
